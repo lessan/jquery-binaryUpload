@@ -33,7 +33,6 @@ $(function() {
       req.onreadystatechange = function (evt) {
         if (req.readyState == 4 && $.isFunction(opts.onRequestLoaded))
             opts.onRequestLoaded(req);
-        }
       }
 
       if (window.FormData) {
