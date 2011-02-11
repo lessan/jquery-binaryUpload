@@ -38,6 +38,10 @@
         onBrowserIncompatible: function() {
           $('#progress').html('Bad browser');
         },
+		onRequestLoaded: function(xhr) {
+		  if (xhr.status == 200)
+			$('#response').html(xhr.responseText);
+		},
         fields: {
           // Useful for Rails apps
           'authenticity_token': 'fake-token',
@@ -60,6 +64,8 @@
 Uploaded files
 <ol id="uploaded_files">
 </ol>
+
+<div id="response"></div>
 
 </body>
 </html>
