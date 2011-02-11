@@ -7,6 +7,7 @@ $(function() {
       onProgress: null,
       onError: null,
       onBrowserIncompatible: null,
+      onRequestLoaded: null,
       url: null,
       fields: {},
       method: 'POST'
@@ -28,6 +29,12 @@ $(function() {
 
       if ($.isFunction(opts.onError))
         req.upload.addEventListener('error', opts.onError, false);
+
+      req.onreadystatechange = function (evt) {
+        if (req.readyState == 4 && $.isFunction(opts.onRequestLoaded))
+            opts.onRequestLoaded(req);
+        }
+      }
 
       if (window.FormData) {
         var formData = new FormData();
